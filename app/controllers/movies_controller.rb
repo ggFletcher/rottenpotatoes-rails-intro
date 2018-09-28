@@ -13,6 +13,18 @@ class MoviesController < ApplicationController
   def index
     @movies = Movie.all
   end
+  # Sorting Column
+  def index
+    if params[:title] == "sort"
+        @movies = Movie.all.order(:title => "ASC")
+        @title_header_class="hilite"
+    elsif params[:release_date] == "sort"
+        @movies = Movie.all.order(:release_date => "ASC")
+        @release_date_class="hilite"
+    else
+        @movies = Movie.all
+    end
+  end
 
   def new
     # default: render 'new' template
